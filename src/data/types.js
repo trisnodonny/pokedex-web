@@ -1,110 +1,129 @@
+import normal from "@assets/icons/types/normal.png"
+import fighting from "@assets/icons/types/fighting.png"
+import flying from "@assets/icons/types/flying.png"
+import poison from "@assets/icons/types/poison.png"
+import ground from "@assets/icons/types/ground.png"
+import rock from "@assets/icons/types/rock.png"
+import bug from "@assets/icons/types/bug.png"
+import ghost from "@assets/icons/types/ghost.png"
+import steel from "@assets/icons/types/steel.png"
+import fire from "@assets/icons/types/fire.png"
+import water from "@assets/icons/types/water.png"
+import grass from "@assets/icons/types/grass.png"
+import electric from "@assets/icons/types/electric.png"
+import psychic from "@assets/icons/types/psychic.png"
+import ice from "@assets/icons/types/ice.png"
+import dragon from "@assets/icons/types/dragon.png"
+import dark from "@assets/icons/types/dark.png"
+import fairy from "@assets/icons/types/fairy.png"
+
 export const types = [
   {
-    label: "bug",
-    icon: "https://archives.bulbagarden.net/media/upload/9/9c/Bug_icon_SwSh.png",
-    color: "#A6B91A",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "dark",
-    icon: "https://archives.bulbagarden.net/media/upload/d/d5/Dark_icon_SwSh.png",
-    color: "#705746",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "dragon",
-    icon: "https://archives.bulbagarden.net/media/upload/7/70/Dragon_icon_SwSh.png",
-    color: "#6F35FC",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "electric",
-    icon: "https://archives.bulbagarden.net/media/upload/7/7b/Electric_icon_SwSh.png",
-    color: "#F7D02C",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "fairy",
-    icon: "https://archives.bulbagarden.net/media/upload/c/c6/Fairy_icon_SwSh.png",
-    color: "#D685AD",
+    label: "normal",
+    icon: normal,
+    color: "#C1C2C1",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "fighting",
-    icon: "https://archives.bulbagarden.net/media/upload/c/c2/Fighting_icon_HOME3.png",
-    color: "#C22E28",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "fire",
-    icon: "https://archives.bulbagarden.net/media/upload/a/ab/Fire_icon_SwSh.png",
-    color: "#EE8130",
+    icon: fighting,
+    color: "#FFAC59",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "flying",
-    icon: "https://archives.bulbagarden.net/media/upload/b/b5/Flying_icon_SwSh.png",
-    color: "#A98FF3",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "ghost",
-    icon: "https://archives.bulbagarden.net/media/upload/0/01/Ghost_icon_SwSh.png",
-    color: "#735797",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "grass",
-    icon: "https://archives.bulbagarden.net/media/upload/a/a8/Grass_icon_SwSh.png",
-    color: "#7AC74C",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "ground",
-    icon: "https://archives.bulbagarden.net/media/upload/2/27/Ground_icon_SwSh.png",
-    color: "#E2BF65",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "ice",
-    icon: "https://archives.bulbagarden.net/media/upload/1/15/Ice_icon_SwSh.png",
-    color: "#96D9D6",
-    background: "https://wallpaperaccess.com/full/2019209.jpg",
-  },
-  {
-    label: "normal",
-    icon: "https://archives.bulbagarden.net/media/upload/9/95/Normal_icon_SwSh.png",
-    color: "#A8A77A",
+    icon: flying,
+    color: "#ADD2F5",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "poison",
-    icon: "https://archives.bulbagarden.net/media/upload/8/8d/Poison_icon_SwSh.png",
-    color: "#A33EA1",
+    icon: poison,
+    color: "#B884DD",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
-    label: "psychic",
-    icon: "https://archives.bulbagarden.net/media/upload/7/73/Psychic_icon_SwSh.png",
-    color: "#F95587",
+    label: "ground",
+    icon: ground,
+    color: "#B88E6F",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "rock",
-    icon: "https://archives.bulbagarden.net/media/upload/1/11/Rock_icon_SwSh.png",
-    color: "#B6A136",
+    icon: rock,
+    color: "#CBC7AD",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "bug",
+    icon: bug,
+    color: "#B8C26A",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "ghost",
+    icon: ghost,
+    color: "#A284A2",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "steel",
-    icon: "https://archives.bulbagarden.net/media/upload/0/09/Steel_icon_SwSh.png",
-    color: "#B7B7CE",
+    icon: steel,
+    color: "#98C2D1",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "fire",
+    icon: fire,
+    color: "#EF7374",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
   {
     label: "water",
-    icon: "https://archives.bulbagarden.net/media/upload/8/80/Water_icon_SwSh.png",
-    color: "#6390F0",
+    icon: water,
+    color: "#74ACF5",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "grass",
+    icon: grass,
+    color: "#82C274",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "electric",
+    icon: electric,
+    color: "#FCD659",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "psychic",
+    icon: psychic,
+    color: "#F584A8",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "ice",
+    icon: ice,
+    color: "#81DFF7",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "dragon",
+    icon: dragon,
+    color: "#8D98EC",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "dark",
+    icon: dark,
+    color: "#998B8C",
+    background: "https://wallpaperaccess.com/full/2019209.jpg",
+  },
+  {
+    label: "fairy",
+    icon: fairy,
+    color: "#F5A2F5",
     background: "https://wallpaperaccess.com/full/2019209.jpg",
   },
 ];
