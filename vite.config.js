@@ -9,6 +9,9 @@ export default defineConfig({
       '@components': `${path.resolve(__dirname, './src/components/')}`,
       '@pages': `${path.resolve(__dirname, './src/pages/')}`,
       '@services': `${path.resolve(__dirname, './src/services/')}`,
+      '@layouts': `${path.resolve(__dirname, './src/layouts/')}`,
+      '@assets': `${path.resolve(__dirname, './src/assets/')}`,
+      '@data': `${path.resolve(__dirname, './src/data/')}`,
     }
   },
   plugins: [react()],

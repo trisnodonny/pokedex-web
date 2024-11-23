@@ -1,10 +1,17 @@
-import { useState } from "react";
-import { useFetchData } from "../../services/useFetchData";
+import Hero from "@components/home/Hero";
+import Section2 from "@components/home/Section2";
+import Section3 from "@components/home/Section3";
+import Section4 from "@components/home/Section4";
+import Section5 from "@components/home/Section5";
 
 export default function HomePage() {
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon");
-  const { data, isPending, error } = useFetchData(url);
-
-  console.log(data);
-  return <>HOME</>;
+  return (
+    <>
+      <Hero />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+    </>
+  );
 }
