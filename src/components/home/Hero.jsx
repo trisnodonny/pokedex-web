@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { arts } from "@data/arts";
 import "swiper/css";
 import "swiper/css/navigation";
+import next from "@assets/icons/next.png";
 
 export default function Hero() {
   const [slide, setSlide] = useState(0);
@@ -15,7 +16,7 @@ export default function Hero() {
 
   return (
     <>
-      <div className="bg-sky-900 text-white">
+      <div className="bg-amber-400">
         <div className="max-w-[1024px] mx-auto flex justify-center items-center p-4">
           <div className="flex items-center justify-center w-1/3 hidden sm:flex">
             {arts.slice(slide, slide + 1).map((art, index) => (
@@ -65,11 +66,7 @@ export default function Hero() {
             <button className="custom-next flex flex-col items-center justify-center gap-2">
               <span style={{ writingMode: "vertical-lr" }}>Next</span>
               <div className="border border-black rounded flex items-center justify-center px-1 w-8">
-                <img
-                  className="w-full"
-                  src="https://cdn-icons-png.freepik.com/512/3916/3916800.png"
-                  alt="arrow"
-                />
+                <img className="w-full" src={next} alt="arrow" />
               </div>
             </button>
           </div>

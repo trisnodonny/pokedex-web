@@ -16,9 +16,9 @@ export default function Section4() {
                 key={index}
                 className="w-[calc((100%/4)-0.8rem)] md:w-[calc((100%/7)-0.87rem)]"
               >
-                <div className="rounded-full overflow-hidden border border-black group">
+                <div className="rounded-full overflow-hidden border border-black">
                   <img
-                    className="w-full group-hover:scale-105 duration-300"
+                    className="w-full"
                     src={type.icon}
                     alt={type.label}
                   />

@@ -3,17 +3,22 @@ import { useEffect, useState } from "react";
 import { types } from "@data/types";
 import { moves } from "@data/moves";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import useSound from "use-sound";
 
 export default function DetailsPage() {
   const { id } = useParams();
-  const [pokemonId, setPokemonId] = useState(id);
+  const [pokemonId, setPokemonId] = useState(+id);
   const [isDisabled, setIsDisabled] = useState(true);
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
   const { data, isPending, error } = useFetchData(url);
   const [abilities, setAbilities] = useState([]);
+  const [allTypes, setAllTypes] = useState([]);
+  const audioUrl = data?.cries?.latest;
+  const [cries, setCries] = useSound(audioUrl);
+
   const typeIcon =
     types.find((type) => type.label === data?.types[0]?.type?.name)?.icon || "";
   const typeBgColor =
@@ -22,18 +27,6 @@ export default function DetailsPage() {
   const typeBgImage =
     types.find((type) => type.label === data?.types[0]?.type?.name)
       ?.background || "";
-
-  const handleNextPokemon = () => {
-    setPokemonId(+pokemonId + 1);
-  };
-  const handlePrevPokemon = (ev) => {
-    ev.preventDefault();
-    if (pokemonId > 0) {
-      setPokemonId(+pokemonId - 1);
-    }
-  };
-
-  console.log(pokemonId );
 
   useEffect(() => {
     setUrl(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
@@ -64,6 +57,30 @@ export default function DetailsPage() {
     }
   }, [data?.abilities]);
 
+  useEffect(() => {
+    if (data?.types) {
+      const fetchTypes = async () => {
+        try {
+          const types = await Promise.all(
+            data?.types?.map(async (item) => {
+              const response = await axios.get(item?.type?.url);
+              const data = response?.data;
+              return data;
+            })
+          );
+          setAllTypes(types);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchTypes();
+    }
+  }, [data?.types]);
+
+  useEffect(() => {
+    setPokemonId(+id);
+  }, [id]);
+
   if (isPending) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
@@ -75,17 +92,15 @@ export default function DetailsPage() {
   return (
     <>
       <div className="bg-slate-100">
-        <div className="container mx-auto max-w-[1280px] w-full py-10 px-4">
-          <div className="flex justify-center items-center w-full flex-col">
+        <div className="container mx-auto max-w-[1280px] w-full py-4 lg:py-10 px-4">
+          <div className="flex justify-center items-center sm:items-start w-full gap-8 h-full flex-col sm:flex-row">
             {/* Card */}
             <div
-              className={`bg-gradient-to-b from-zinc-400 to-zinc-300 rounded-2xl p-2 w-full max-w-96 hover:scale-105 hover:rotate-[-1deg] hover:skew-x-1 hover:shadow-lg duration-150`}
+              className={`bg-gradient-to-b from-zinc-400 to-zinc-300 rounded-2xl p-2 w-full max-w-72 hover:scale-105 hover:rotate-[-1deg] hover:skew-x-1 hover:shadow-lg duration-150`}
             >
               <div
                 className="w-full rounded-xl p-4"
-                style={{
-                  backgroundColor: typeBgColor,
-                }}
+                style={{ backgroundColor: typeBgColor }}
               >
                 <div className="flex items-center justify-between capitalize font-bold mb-4">
                   <p>{data?.name}</p>
@@ -117,7 +132,7 @@ export default function DetailsPage() {
                     }}
                   >
                     <img
-                      className="w-full object-contain"
+                      className="w-full h-36 object-contain"
                       src={
                         data?.sprites?.other?.["official-artwork"]
                           ?.front_default
@@ -159,20 +174,102 @@ export default function DetailsPage() {
               </div>
             </div>
             {/* Card */}
-            <div className="flex">
-              <button
-                onClick={handlePrevPokemon}
-                className="text-2xl border border-black flex items-center justify-center disabled:opacity-25"
-                disabled={isDisabled}
-              >
-                prev
-              </button>
-              <button
-                onClick={handleNextPokemon}
-                className="text-2xl border border-black flex items-center justify-center"
-              >
-                next
-              </button>
+
+            <div className="w-full sm:w-1/3 h-full sm:min-h-[410px] flex flex-col">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <p className="capitalize text-2xl font-bold">{data?.name}</p>
+                  <button
+                    onClick={cries}
+                    className="w-8 p-1 border border-black rounded-full"
+                  >
+                    <img
+                      className="w-full"
+                      src="https://cdn-icons-png.freepik.com/512/3917/3917655.png"
+                      alt="sound"
+                    />
+                  </button>
+                </div>
+                <div className="flex gap-2 mb-4">
+                  {allTypes.map((type, index) => (
+                    <div key={index} className="w-32">
+                      <img
+                        className="w-full"
+                        src={
+                          type?.sprites?.["generation-viii"]?.["legends-arceus"]
+                            ?.name_icon
+                        }
+                        alt=""
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  <div className="flex items-center gap-1">
+                    <img
+                      className="w-6"
+                      src=" https://cdn-icons-png.freepik.com/512/15865/15865204.png?ga=GA1.1.1350735869.1732522360"
+                      alt=""
+                    />
+                    <p className="capitalize font-bold">{data?.height / 10}M</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <img
+                      className="w-6"
+                      src="https://cdn-icons-png.freepik.com/512/16769/16769266.png?ga=GA1.1.1350735869.1732522360"
+                      alt=""
+                    />
+                    <p className="capitalize font-bold">
+                      {data?.weight / 10}KG
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="flex justify-around gap-4 px-2 py-4 rounded-lg mb-4 bg-opacity-50"
+                  style={{
+                    backgroundColor: typeBgColor,
+                  }}
+                >
+                  <div className="w-24 h-24 flex">
+                    <img
+                      className="w-full object-contain"
+                      src={data?.sprites?.other?.showdown?.front_default}
+                      alt=""
+                    />
+                  </div>
+                  <div className="w-24 h-24 flex">
+                    <img
+                      className="w-full object-contain"
+                      src={data?.sprites?.other?.showdown?.back_default}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <Link to={`/pokemon/${pokemonId - 1}`}>
+                  <button
+                    className="text-2xl w-12 flex items-center justify-center disabled:opacity-25 hover:opacity-50 duration-300"
+                    disabled={isDisabled}
+                  >
+                    <img
+                      className="w-full"
+                      src="https://cdn-icons-png.freepik.com/512/6407/6407325.png"
+                      alt=""
+                    />
+                  </button>
+                </Link>
+                <Link to={`/pokemon/${pokemonId + 1}`}>
+                  <button className="text-2xl w-12 flex items-center justify-center hover:opacity-50 duration-300">
+                    <img
+                      className="w-full"
+                      src="https://cdn-icons-png.freepik.com/512/6407/6407329.png?ga=GA1.1.558200659.1732516052"
+                      alt=""
+                    />
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
